@@ -23,3 +23,10 @@
     color: darkturquoise;
     font-weight: 500;
 }
+
+.cartcontainer {
+    background-color: white;
+    padding: 15;
+    border-radius: 15px;
+    border-width: 1px;
+}

@@ -23,3 +23,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+
+Route::get('/cart', 'CartController@index')->name('cart');
+Route::get('/cart/add/{productId}', 'CartController@add');
+Route::post('/cart/save', 'OrderController@makeOrder');
