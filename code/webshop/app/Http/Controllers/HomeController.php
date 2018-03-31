@@ -31,4 +31,8 @@ class HomeController extends Controller
         $navigations = Navigation::all()->where('admin', 1);
         return view('admin.home', ['navigations' => $navigations]);
     }
+    
+    public function about(){
+        return view('about');
+    }
 }

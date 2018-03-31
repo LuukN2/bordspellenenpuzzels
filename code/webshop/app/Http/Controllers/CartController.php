@@ -40,14 +40,14 @@ class CartController extends Controller
                 $updatedItem[1] += 1;
                 $_SESSION['cart_contents'][$index] = $updatedItem;
                 
-                return redirect('/products');
+                return redirect()->back();
             }
             $index += 1;
         }
         
         array_push($_SESSION['cart_contents'],$data);
         
-        return redirect('/products');
+        return redirect()->back();
 
     }
     

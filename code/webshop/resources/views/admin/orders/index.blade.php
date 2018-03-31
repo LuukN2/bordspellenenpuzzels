@@ -19,17 +19,21 @@
                                 <div class="row">
                                     <div class="col-md-6 col-xs-6">
                                         <h3>Bestelling {{$order->id}}</h3>
+                                        <h4>Van gebruiker {{$order->user_id}}</h4>
                                     </div>
                                     <div>
-                                        <a class="btn btn-primary" href="orders/show?id={{$order->id}}">Bekijk bestelling</a>
+                                        <a class="btn btn-primary" href="orders/show?id={{$order->id}}&user_id={{$order->user_id}}">Bekijk bestelling</a>
+                                        <br>
+                                        <br>
+                                        <a class="btn btn-danger" href="orders/destroy?id={{$order->id}}&user_id={{$order->user_id}}">Verwijder bestelling</a>
                                     </div>
                                 </div>
                             </div>
-                                 </div>
-                </div>
-                        @endforeach
-               
-            </div>
-        </div>
+                                    </div>
 </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
 @endsection

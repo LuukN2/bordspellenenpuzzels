@@ -55,8 +55,36 @@
                                  @else
                                  <option value="Boardgame">Bordspel</option>
                                  <option value="Puzzle" selected="true">Puzzel</option>
+                                 @endif
                             </select>
  
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="imageurl">Categoriën</label>
+                        <div class="col-md-9">
+                            <select multiple name="categories[]">
+                                @foreach($categories as $category)
+                                    @if($category->subcategories() != false)
+                                        <optgroup label="{{$category->name}}">
+                                            @foreach($category->subcategories() as $sub)
+                                                @if(in_array($sub->id, $preselected))
+                                                    <option value="{{$sub->id}}" selected="true">{{$sub->name}}</option>
+                                                @else
+                                                    <option value="{{$sub->id}}">{{$sub->name}}</option>
+                                                @endif
+                                            @endforeach
+                                        </optgroup>
+                                    @elseif($category->parent_category == null)
+                                         @if(in_array($category->id, $preselected))
+                                            <option value="{{$category->id}}" selected="true">{{$category->name}}</option>
+                                        @else
+                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @endif
+                                    @endif
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 

@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//home route
+Route::Get('/about', 'HomeController@about');
+
 // product routes
 Route::get('bordspellen', 'ProductController@boardGames');
 Route::get('puzzels', 'ProductController@puzzles');
@@ -34,6 +37,7 @@ Route::get('/cart/destroy/{id}', 'CartController@destroy');
 // order routes
 Route::get('/orders', 'OrderController@index');
 Route::post('/cart/save', 'OrderController@makeOrder');
+Route::Get('/orders/show', 'OrderController@userShow');
 
 // product admin routes
 Route::get('/admin/products', 'ProductController@adminIndex');
@@ -53,3 +57,8 @@ Route::post('/admin/categories/add', 'CategoryController@add');
 Route::get('/admin/categories/edit/{id}', 'CategoryController@edit');
 Route::get('/admin/categories/destroy/{id}', 'CategoryController@destroy');
 Route::post('/admin/categories/save', 'CategoryController@save');
+
+// order admin routes
+Route::Get('/admin/orders/destroy', 'OrderController@destroy');
+Route::Get('/admin/orders', 'OrderController@adminIndex');
+Route::Get('/admin/orders/show', 'OrderController@show');
