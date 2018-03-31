@@ -4,32 +4,29 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrdersTable extends Migration
+class CategoryProduct extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    protected $primaryKey = ['id', 'user_id', 'product_id'];
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->integer('id');
-
-            $table->unsignedInteger('user_id');
+        Schema::create('category_product', function (Blueprint $table) {
+            $table->unsignedInteger('category_id');
             $table->unsignedInteger('product_id');
-            $table->integer('amount');
+
             
-            $table->foreign('user_id')
-            ->references('id')->on('users')
+            $table->foreign('category_id')
+            ->references('id')->on('categories')
             ->onDelete('cascade');
             
             $table->foreign('product_id')
             ->references('id')->on('products')
             ->onDelete('cascade');
             
-            $table->primary(['id','user_id','product_id']);
+            $table->primary(['category_id','product_id']);
         });
     }
 
@@ -40,6 +37,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        //
     }
 }

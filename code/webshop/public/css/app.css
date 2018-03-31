@@ -30,3 +30,10 @@
     border-radius: 15px;
     border-width: 1px;
 }
+
+.whitebackground {
+    background-color: white;
+    padding: 15;
+    border-radius: 15px;
+    border-width: 1px;
+}

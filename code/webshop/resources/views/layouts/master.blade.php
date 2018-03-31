@@ -20,6 +20,9 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/">Bordspellen en Puzzels</a>
+                @foreach($navigations as $navigation)
+                    <a class="navbar-brand" href="{{'http://'.Request::getHttpHost().'/'.$navigation->url}}">{{$navigation->name}}</a>
+                @endforeach
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
@@ -28,9 +31,12 @@
                         <li><a href="register">Signup</a></li>
                         <li><a href="/cart">Cart <span class="fa fa-shopping-cart"></span></a></li>
                     @else
-                        <li><a href="/order">My Orders <span class="fa fa-briefcase"></span></a></li>
+                        <li><a href="/orders">My Orders <span class="fa fa-briefcase"></span></a></li>
                         <li><a href="/cart">Cart <span class="fa fa-shopping-cart"></span></a></li>
                         <li><a href="logout">Logout {{ Auth::user()->name}}</a></li>
+                    @if(Auth::user()->admin == 1)
+                        <li><a href="/admin">Adminpagina</a></li>
+                    @endif
                     @endif
                 </ul>
             </div><!-- /.navbar-collapse -->

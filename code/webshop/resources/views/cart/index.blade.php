@@ -7,6 +7,8 @@
 @endsection
  
 @section('content')
+@if(count($products) > 0)
+
 <form method="POST" action="/cart/save" class="form-horizontal" enctype="multipart/form-data" role="form">
     {!! csrf_field() !!}
     <div class="container">
@@ -19,6 +21,7 @@
                         <h3>{{$product->name}}</h3>
                         <p>Price: {{$product->price}}</p>
                         <p>Amount: </p><input type="number" name="amount[]" value="{{$product->amount}}">
+                        <a class="btn btn-danger" href="/cart/destroy/{{$product->id}}">Verwijder artikel</a>
                     </div>
                 @endforeach
                 </div>
@@ -28,8 +31,14 @@
         @if (Auth::check())
         <input type="submit" class="btn btn-primary" value="Order products">
         @else
-        <a href="/login" class="btn btn-primary">Order products</a>
+        <a href="/login" class="btn btn-primary">Bestel producten</a>
         @endif
     </div>
 </form>
+@else
+<div class="cartcontainer">
+<h1>Je winkelwagen is leeg! Bestel iets jij suffie!</h1>
+</div>
+@endif
+
 @endsection

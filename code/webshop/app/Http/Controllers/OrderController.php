@@ -4,21 +4,40 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use DB;
+use App\User;
+
 class OrderController extends Controller
 {
     public function makeOrder(Request $request) {
+        session_start();
        $user = \Auth::user();
        $products = $request->all();
+       $orderId = 1;
        $counter = 0;
        $ids = $request->input('product_id');
        $amounts = $request->input('amount');
+       $orderMax = DB::table('orders')->find(DB::table('orders')->where('user_id', $user->id)->max('id'));
+        
+        if($orderMax != null){
+            $orderId = $orderMax->id + 1;
+        }
+        
         
         foreach($ids as $id){
            $amount = $amounts[$counter];
-           $user->products()->attach($id, ['amount'=> $amount]);
+           $user->products()->attach($id, ['amount'=> $amount, 'id'=> $orderId]);
             $counter += 1;
         }
-        unset($_SESSION['cart_contents'])
+        
+        unset($_SESSION['cart_contents']);
         return redirect('/');
+    }
+    
+    public function index(){
+        $user = \Auth::user();
+        $orders = DB::table('orders')->select('id')->distinct()->where('user_id', $user->id)->get();
+        
+        return view('orders.index',['orders' => $orders]);
     }
 }

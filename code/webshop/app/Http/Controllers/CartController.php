@@ -51,8 +51,20 @@ class CartController extends Controller
 
     }
     
-    public function order($products){
-        
+    public function destroy(Request $request, $id){
+        $count = 0;
+        foreach($_SESSION['cart_contents'] AS $p){
+            if($p[0] == $id){
+                
+                unset($_SESSION['cart_contents'][$count]);
+            }
+            $count += 1;
+        }
+        if($count <= 1){
+            unset($_SESSION['cart_contents']);
+        }
+        return redirect('/cart');
     }
+    
 }
 ?>

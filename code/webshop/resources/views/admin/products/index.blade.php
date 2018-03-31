@@ -10,11 +10,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+                <div class="card">
+                    <h1>Producten</h1>
+                    <a class="btn btn-primary" href="products/create">Nieuw Product</a>
+                </div>
                 @foreach ($products as $product)
  
                     <div class="col-sm-6 col-md-4 product">
                         <div class="thumbnail" >
-                            <img src="{{$product->imageurl}}" class="img-responsive">
+                            <img src="{{$product->imageurl}}" class="img-responsive" onerror="this.src='https://risibank.fr/cache/stickers/d650/65048-full.png'">
                             <div class="caption">
                                 <div class="row">
                                     <div class="col-md-6 col-xs-6">
@@ -28,7 +32,15 @@
                                 <p>{{$product->description}}</p>
                                 <div class="row">
                                     <div class="col-md-6 col-md-offset-3">
-                                        <a href="/cart/add/{{$product->id}}" class="btn btn-success btn-product"><span class="fa fa-shopping-cart"></span> Buy</a></div>
+                                    <a href="/admin/products/edit/{{$product->id}}" class="btn btn-primary">Bewerken</a>
+                                        <br>
+
+                                    </div>
+                                    <div class="col-md-6 col-md-offset-3">
+
+                                        <br>
+                                    <a href="/admin/products/destroy/{{$product->id}}" class="btn btn-danger">Verwijderen</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

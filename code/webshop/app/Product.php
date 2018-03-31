@@ -10,4 +10,7 @@ class Product extends Model
     protected $amount;
     protected $fillable = ['name','type','description','price','imageurl'];
     
+    public function categories(){
+        return $this->belongsToMany('App\Category', 'category_product');
+    }
 }
