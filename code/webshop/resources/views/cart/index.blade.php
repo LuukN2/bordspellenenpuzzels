@@ -7,6 +7,7 @@
 @endsection
  
 @section('content')
+{!! Breadcrumbs::render('cart') !!}
 @if(count($products) > 0)
 <script type="text/javascript" src="/js/cart.js"></script>
 <script type="text/javascript">

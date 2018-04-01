@@ -7,6 +7,7 @@
 @endsection
  
 @section('content')
+{!! Breadcrumbs::render('home') !!}
 <div class="container">
     <div class="whitebackground">
     

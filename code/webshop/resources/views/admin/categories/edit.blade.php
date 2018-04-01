@@ -7,6 +7,8 @@
 @endsection
  
 @section('content')
+@if(Auth::User()->admin == 1)
+    {!! Breadcrumbs::render('edit_category', $category) !!}
     <div class="panel panel-info">
         <div class="panel-heading">
             <div class="panel-title">Nieuwe Categorie</div>
@@ -52,5 +54,6 @@
             </form>
         </div>
     </div>
+@endif
 @endsection
  

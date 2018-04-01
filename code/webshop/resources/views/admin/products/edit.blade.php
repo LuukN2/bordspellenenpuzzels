@@ -8,6 +8,7 @@
  
 @section('content')
     @if(Auth::User()->admin == 1)
+    {!! Breadcrumbs::render('edit_product', $product) !!}
     <div class="panel panel-info">
         <div class="panel-heading">
             <div class="panel-title">New Product</div>
